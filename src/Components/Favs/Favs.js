@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import apiUrl from "../../apiConfig";
 import { DataContext } from "../../App";
-import "./Playlist.scss";
+import "../Playlist/Playlist.scss";
 
-const Playlist = () => {
+const Favs = () => {
   const { refresh, setRefresh } = useContext(DataContext);
   const [playlist, setPlaylist] = useState([]);
   const [favs, setFavs] = useState([]);
@@ -14,7 +14,6 @@ const Playlist = () => {
     duration: "",
     fav: false,
   });
-  const [isDeleted, setIsDeleted] = useState(false);
   const displayFavs = [];
 
   useEffect(() => {
@@ -28,7 +27,8 @@ const Playlist = () => {
     };
 
     allSongsAPICall();
-  }, [refresh, favs, isDeleted]);
+  }, [refresh, favs]);
+
 
   const handleFavs = async (song) => {
     const favsArr = [...displayFavs];
@@ -43,7 +43,6 @@ const Playlist = () => {
       });
 
       favsArr.splice(included, 1);
-
     } else {
       setInput({
         name: song.name,
@@ -51,7 +50,6 @@ const Playlist = () => {
         duration: song.duration,
         fav: !song.fav,
       });
-
       favsArr.push(song);
     }
 
@@ -64,21 +62,16 @@ const Playlist = () => {
         data: input,
       });
     }
-  };
 
-  const destroy = async (song) => {
-    const res = await axios({
-      url: `${apiUrl}/${song.id}`,
-      method: "DELETE",
-    });
-    setIsDeleted(!isDeleted);
   };
 
   const songs = playlist.map((song) => {
     if (song.fav === true) {
       displayFavs.push(song);
     }
+  });
 
+  const favSongs = displayFavs.map((song) => {
     return (
       <div key={song.id}>
         <div className="left-song-data">
@@ -86,7 +79,6 @@ const Playlist = () => {
           <div className="right-song-data">
             <p className="inline-name">{song.artist}</p>
             <h2 onClick={() => handleFavs(song)}>{song.fav ? "♥" : "x"}</h2>
-            <button onClick={() => destroy(song)}>Delete</button>
           </div>
         </div>
         <p className="left-duration">{song.duration}</p>
@@ -96,10 +88,10 @@ const Playlist = () => {
 
   return (
     <>
-      <h1>PLAYLIST 1</h1>
-      <div>{songs}</div>
+      <h2>Favorite Songs List</h2>
+      <div>{favSongs}</div>
     </>
   );
 };
 
-export default Playlist;
+export default Favs;
