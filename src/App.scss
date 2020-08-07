@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600&family=Anton');
+
+body {
+  color: #444444;
+  margin-bottom: 15%;
+  padding: 0 5% 0 5%;
+}
+
+p {
+  font-family: 'Zilla Slab', serif;
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  // padding-left: 5%;
+}
+
+// .tag-line {
+  // padding-right: 5%;
+// }
+
+.title {
+  border-bottom: 5px solid #A93E55;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+
+  h1 {
+    // padding-left: 5%;
+    color: #1A333C;
+    font-size: 55px;
+  }
+
+}

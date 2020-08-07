@@ -1,0 +1,28 @@
+.left-song-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-left: 5%;
+    padding-right: 10%;
+}
+
+.left-duration {
+    padding-left: 5%;
+    margin-top: -10px;
+}
+
+.right-song-data {
+    display: flex;
+    align-items: baseline;
+
+    h2 {
+        margin: 0 3% 0 3%;
+        cursor: pointer;
+    }
+
+    .inline-name {
+        display: inline;
+        white-space: nowrap;
+    }
+}
+
